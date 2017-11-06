@@ -1,31 +1,37 @@
 package javasolitaire;
 import java.util.ArrayList;
 
-public class CarteTest {
+public class CarteTest extends ArrayList{
 	
-		private static ArrayList<Test> cartee = new ArrayList<>();
+		public ArrayList<Test> cartee = new ArrayList<Test>(); 
 
-	    public CarteTest()
+	    public void ajoutcarte()
 	    {
-	        cartee = new ArrayList<Test>();
-
-	        for(int type =0; type<=3; type++)
-	        {
-	            for(int cartenb =0; cartenb<=12;cartenb++)
-	            {
-	                cartee.add(new Test(type,cartenb));
-	            }
-	        }  
+	    	
+        for(int type =0; type<=3; type++)
+        {
+            for(int cartenb =0; cartenb<=12;cartenb++)
+            {
+                cartee.add(new Test(type,cartenb));
+            }
+        }
 	    }
+        
+        public void afficherCarte() {
+
+	    	  for(int i=0; i<cartee.size(); i++)
+	    	    {
+	    	        System.out.println(cartee.get(i));
+	    	    }
+	    	  
+        }
+        
 	    public static void main(String[] args)
 	    {    
-	        if (cartee == null) {
-	            System.out.println("Hehooooo !");
-	            return;
-	        }
-	    	  for(int i=0; i<CarteTest.cartee.size(); i++)
-	    	    {
-	    	        System.out.println(CarteTest.cartee.get(i).toString());
-	    	    }
+	    	CarteTest a = new CarteTest();
+	    	a.ajoutcarte();
+	    	a.afficherCarte();
+	    	System.out.println();
+	    }
 }
-}
+
