@@ -9,12 +9,11 @@ public class Carte {
 	private String[] cartetype = {"Trefle", "Pique", "Carreau", "Coeur"};	
 	private int[] nbcarte = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private boolean couleur;
-	private boolean etat = false;
+	private boolean etat=false;
 	
 	
 	public Carte() {
 		};
-	
 	
 	public Carte(int types, int cartenb)
 	{
@@ -26,6 +25,10 @@ public class Carte {
 			couleur = false;
 	}
 	
+	public void setCouleur(boolean couleur) {
+		this.couleur = couleur;
+	}
+
 	public String[] getCartetype() {
 		return cartetype;
 	}
@@ -34,21 +37,10 @@ public class Carte {
 		return nbcarte;
 	}
 
-
-	public ArrayList<Carte> cartee = new ArrayList<Carte>();
-		
-
-	public void ajoutcarte()
-	{
-
-		for(int type =0; type<=3; type++)
-		{
-			for(int cartenb =0; cartenb<=12;cartenb++)
-			{
-				cartee.add(new Carte(type,cartenb));
-			}
-		}
+	public void setEtat() {
+		etat = true;
 	}
+
 
 	public int getType() {
 		return type;
@@ -58,50 +50,57 @@ public class Carte {
 		return cartenb;
 	}
 
-	public void afficherPaquet() {
+//	public void afficherPaquet() {
+//
+//		for(int i=0; i<cartee.size(); i++)
+//		{
+//			System.out.println(cartee.get(i));
+//		}
+//	}
+//	
+//	public void melangerPaquet() {
+//		Collections.shuffle(cartee);
+//		
+//	}
+//	
+//		public void afficherCarte(int nb) {
+//			System.out.println(cartee.get(nb));
+//		}
+//
+//		public void afficherType(int nb) {
+//			System.out.println(getCartetype()[nb]);
+//		}
+//		
+//		public void afficherCouleur(int nb) {
+//			System.out.println(cartee.get(nb).couleur); 
+//		}
+//		
+//		public boolean getCouleur() {
+//			return couleur;
+//		}
+//		
+//		public void af() {
+//			System.out.println(cartee);
+//		}
 
-		for(int i=0; i<cartee.size(); i++)
-		{
-			System.out.println(cartee.get(i));
-		}
-	}
-	
-	public void melangerPaquet() {
-		Collections.shuffle(cartee);
-		
-	}
-	
-		public void afficherCarte(int nb) {
-			System.out.println(cartee.get(nb));
-		}
-
-		public void afficherType(int nb) {
-			System.out.println(getCartetype()[nb]);
-		}
-		
-		public void afficherCouleur(int nb) {
-			System.out.println(cartee.get(nb).couleur); 
-		}
-		
-		public boolean getCouleur() {
-			return couleur;
-		}
-		
-		public void af() {
-			System.out.println(cartee);
-		}
-		
-	public ArrayList<Carte> getCartee() {
-			return cartee;
-		}
 
 
 	public String toString()
 	{
-		String cartefinal = getNbcarte()[cartenb] + " de " + getCartetype()[type];
-
+		if (getEtat() == true) {
+		String cartefinal = getNbcarte()[getCartenb()] + " de " + getCartetype()[getType()];
 		return cartefinal;  
+		}
+		else
+		{
+		String cartefinal = " Carte cache";
+		return cartefinal;  
+		}
+	}
+
+	public boolean getEtat() {
+		// TODO Auto-generated method stub
+		return etat;
 	}
 }
-
 

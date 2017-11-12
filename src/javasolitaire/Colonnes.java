@@ -15,6 +15,7 @@ public class Colonnes{
 	public ArrayList<Carte> p6 = new ArrayList<Carte>();
 	public ArrayList<Carte> p7 = new ArrayList<Carte>();
 	public ArrayList<Carte> paq = new ArrayList<Carte>();
+	public ArrayList<Carte> pioche = new ArrayList<Carte>();
 	
 	public void ajoutcarte()
 	{
@@ -32,65 +33,79 @@ public class Colonnes{
 		System.out.println("Premiere colonne :");
 	for (int i= 0; i<=6; i++) {
 		p1.add(paq.get(i));
+		if ( i == 6)
+			p1.get(i).setEtat();
 		System.out.println(p1.get(i));
-	}
-	}
-
-	public void melangerPaquet() {
-		Collections.shuffle(paq);
-		
-	}
-	public void deuxiemeColonne() {
-		System.out.println("Deuxieme colonne: ");
-		for (int i = 7; i<=12; i++) {
-			p2.add(paq.get(i));
-		}
-		for (int i = 0; i<=5;i++)
-		{
-			System.out.println(p1.get(i));
 		}
 	}
 	
+	public void deuxiemeColonne() {
+		int indicetab = 7;
+		System.out.println("Deuxieme colonne: ");
+		for (int i = 0; i<=5; i++) {
+			p2.add(paq.get(indicetab));
+			if ( i == 5)
+				p2.get(i).setEtat();
+			System.out.println(p2.get(i));
+			indicetab++;
+		}
+	}
+
 	public void troisiemeColonne() {
+		int indicetab = 13;
 		System.out.println("Troisieme colonne: ");
-		for (int i = 13; i<=17;i++) 
-			p3.add(paq.get(i));
-			for (int i=0;i<=4;i++)
+		for (int i = 0; i<=4;i++) { 
+			p3.add(paq.get(indicetab));
+			if (i == 4) 
+				p3.get(i).setEtat();
 		System.out.println(p3.get(i));
-		
+			indicetab++;
+		}
 	}
 	
 	public void quatriemeColonne() {
+		int indicetab = 18;
 		System.out.println("Quatrieme colonne: ");
-		for (int i = 18; i<=21; i++) 
-			p4.add(paq.get(i));
-			for (int i=0;i<=3;i++)
+		for (int i = 0; i<=3; i++) {
+			p4.add(paq.get(indicetab));
+			if (i == 3)
+				p4.get(i).setEtat();
 			System.out.println(p4.get(i));
+			indicetab++;
+			}
 		}
 	
 	public void cinquiemeColonne() {
+		int indicetab = 22;
 		System.out.println("Cinquieme colonne: ");
-		for (int i = 22; i<=24; i++) 
-			p5.add(paq.get(i));
-			for (int i= 0;i<=2;i++)
+		for (int i = 0; i<=2; i++) {
+			p5.add(paq.get(indicetab));
+			if (i == 2)
+				p5.get(i).setEtat();
 			System.out.println(p5.get(i));
-		
+			indicetab++;
+		}
 	}
 	
 	public void sixiemeColonne() {
 		System.out.println(" Sixieme colonne: ");
-		for (int i = 25; i<=26; i++) 
-			p6.add(paq.get(i));
-		for (int i=0;i<=1;i++ )
+		int indicetab = 25;
+		for (int i = 0; i<=1; i++) {
+			p6.add(paq.get(indicetab));
+		if (i == 1)
+			p6.get(i).setEtat();
 			System.out.println(p6.get(i));
+			indicetab++;
 		}
+	}
 	
 	public void septiemeColonne() {
 		System.out.println("Septieme colonne: ");
 			p7.add(paq.get(27));
+			p7.get(0).setEtat();
 			System.out.println(p7.get(0));
 	}
-	
+
 	public void ColonnesAutomatise() {
 		premiereColonne();
 		deuxiemeColonne();
@@ -100,6 +115,36 @@ public class Colonnes{
 		sixiemeColonne();
 		septiemeColonne();
 	}
+	
+	
+	
+	public boolean getEtat () {
+		return a.getEtat();
+	}
+	
+	public void afficherCarte(int nb) {
+		System.out.println(paq.get(nb));
+	}
+	
+	public void afficherEtat(int nb) {
+		System.out.println(paq.get(nb));
+	}
+	
+	public void melangerPaquet() {
+		Collections.shuffle(paq);
+		}
+	
+	public void pioche() {
+		System.out.println(" Pioche: ");
+		int indicetab = 28;
+		for (int i = 0; i<=23; i++) {
+			pioche.add(paq.get(indicetab));
+			pioche.get(i).setEtat();
+			System.out.println(pioche.get(i));
+			indicetab++;
+		}
+	}
+	
 	
 //	public void afficherColonnes() {
 //		for(int i=0; i<p1.size(); i++)
@@ -112,19 +157,4 @@ public class Colonnes{
 //		}
 //	}
 	
-	public void af() {
-		System.out.println(paq);
-	}
-	
-	public String toString()
-	{
-		String cartefinal = a.getNbcarte()[a.getCartenb()] + " de " + a.getCartetype()[a.getType()];
-
-		return cartefinal;  
-	}
-	
-	
-	
-	
-	
-	}
+}
