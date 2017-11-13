@@ -24,71 +24,19 @@ public class Carte {
 		else 
 			couleur = false;
 	}
-	
-	public void setCouleur(boolean couleur) {
-		this.couleur = couleur;
-	}
-
-	public String[] getCartetype() {
-		return cartetype;
-	}
-
-	public int[] getNbcarte() {
-		return nbcarte;
-	}
 
 	public void setEtat() {
 		etat = true;
 	}
-
-
-	public int getType() {
-		return type;
-	}
-
-	public int getCartenb() {
-		return cartenb;
-	}
-
-//	public void afficherPaquet() {
-//
-//		for(int i=0; i<cartee.size(); i++)
-//		{
-//			System.out.println(cartee.get(i));
-//		}
-//	}
-//	
-//	public void melangerPaquet() {
-//		Collections.shuffle(cartee);
-//		
-//	}
-//	
-//		public void afficherCarte(int nb) {
-//			System.out.println(cartee.get(nb));
-//		}
-//
-//		public void afficherType(int nb) {
-//			System.out.println(getCartetype()[nb]);
-//		}
-//		
-//		public void afficherCouleur(int nb) {
-//			System.out.println(cartee.get(nb).couleur); 
-//		}
-//		
-//		public boolean getCouleur() {
-//			return couleur;
-//		}
-//		
-//		public void af() {
-//			System.out.println(cartee);
-//		}
-
-
+	
+		public boolean getCouleur() {
+			return couleur;
+		}
 
 	public String toString()
 	{
 		if (getEtat() == true) {
-		String cartefinal = getNbcarte()[getCartenb()] + " de " + getCartetype()[getType()];
+		String cartefinal = nbcarte[cartenb] + " de " + cartetype[type];
 		return cartefinal;  
 		}
 		else

@@ -1,11 +1,12 @@
 package javasolitaire;
 import java.util.*;
 
-public class Colonnes{
+public class Jeu{
 	
-	public Colonnes() {
+	public Jeu() {
 		
 	}
+	
 	Carte a = new Carte();
 	public ArrayList<Carte> p1 = new ArrayList<Carte>();
 	public ArrayList<Carte> p2 = new ArrayList<Carte>();
@@ -14,12 +15,12 @@ public class Colonnes{
 	public ArrayList<Carte> p5 = new ArrayList<Carte>();
 	public ArrayList<Carte> p6 = new ArrayList<Carte>();
 	public ArrayList<Carte> p7 = new ArrayList<Carte>();
-	public ArrayList<Carte> paq = new ArrayList<Carte>();
 	public ArrayList<Carte> pioche = new ArrayList<Carte>();
-	
-	public void ajoutcarte()
+	public ArrayList<Carte> paq = paquet();
+	public ArrayList<Carte> paquet()
 	{
-
+		ArrayList<Carte> paq = new ArrayList<Carte>();
+		
 		for(int type =0; type<=3; type++)
 		{
 			for(int cartenb =0; cartenb<=12;cartenb++)
@@ -27,6 +28,7 @@ public class Colonnes{
 				paq.add(new Carte(type,cartenb));
 			}
 		}
+		return paq;
 	}
 	
 	public void premiereColonne() {
@@ -106,7 +108,9 @@ public class Colonnes{
 			System.out.println(p7.get(0));
 	}
 
-	public void ColonnesAutomatise() {
+	public void initialisationTerrain() {
+		paquet();
+		melangerPaquet();
 		premiereColonne();
 		deuxiemeColonne();
 		troisiemeColonne();
@@ -114,27 +118,11 @@ public class Colonnes{
 		cinquiemeColonne();
 		sixiemeColonne();
 		septiemeColonne();
+		pioche();
 	}
-	
-	
-	
-	public boolean getEtat () {
-		return a.getEtat();
-	}
-	
-	public void afficherCarte(int nb) {
-		System.out.println(paq.get(nb));
-	}
-	
-	public void afficherEtat(int nb) {
-		System.out.println(paq.get(nb));
-	}
-	
-	public void melangerPaquet() {
-		Collections.shuffle(paq);
-		}
 	
 	public void pioche() {
+		
 		System.out.println(" Pioche: ");
 		int indicetab = 28;
 		for (int i = 0; i<=23; i++) {
@@ -145,6 +133,23 @@ public class Colonnes{
 		}
 	}
 	
+	
+	public boolean getEtat () {
+		return a.getEtat();
+	}
+	
+//	public void afficherCarte(int nb) {
+//		System.out.println(paq.get(nb));
+//	}
+//	
+//	public void afficherEtat(int nb) {
+//		System.out.println(paq.get(nb));
+//	}
+//	
+	public void melangerPaquet() {
+		Collections.shuffle(paq);
+		}
+
 	
 //	public void afficherColonnes() {
 //		for(int i=0; i<p1.size(); i++)

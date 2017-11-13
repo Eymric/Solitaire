@@ -13,15 +13,11 @@ public class CarteTest  {
 //		a.afficherCarte(10);
 //		a.afficherType(3);
 //		System.out.println(a.getCouleur());
-		Colonnes c = new Colonnes();
+		Jeu j = new Jeu();
 	
 //		c.afficherColonne();
-		c.ajoutcarte();
-		c.melangerPaquet();
-		c.ColonnesAutomatise();
-		Pioche p = new Pioche();
-		p.pioche();
-		c.pioche();
+		j.paquet();
+		j.initialisationTerrain();
 		
 		
 		
