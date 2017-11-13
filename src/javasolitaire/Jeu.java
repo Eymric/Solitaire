@@ -150,7 +150,7 @@ public class Jeu{
 		Collections.shuffle(paq);
 		}
 
-	
+//
 //	public void afficherColonnes() {
 //		for(int i=0; i<p1.size(); i++)
 //		{
