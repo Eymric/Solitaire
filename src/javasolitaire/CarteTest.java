@@ -16,10 +16,7 @@ public class CarteTest  {
 		Jeu j = new Jeu();
 	
 //		c.afficherColonne();
-		j.paquet();
 		j.initialisationTerrain();
-		
-		
 		
 	}
 }

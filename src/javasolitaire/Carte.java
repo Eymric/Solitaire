@@ -6,10 +6,11 @@ import java.util.Collections;
 public class Carte {
 
 	private int type, cartenb;
-	private String[] cartetype = {"Trefle", "Pique", "Carreau", "Coeur"};	
+	private static String[] cartetype = {"Trefle", "Pique", "Carreau", "Coeur"};	
 	private int[] nbcarte = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private boolean couleur;
 	private boolean etat=false;
+	
 	
 	
 	public Carte() {
@@ -25,6 +26,10 @@ public class Carte {
 			couleur = false;
 	}
 
+	public int getCartenb() {
+		return cartenb;
+	}
+	
 	public void setEtat() {
 		etat = true;
 	}
