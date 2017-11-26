@@ -26,6 +26,10 @@ public class Carte {
 			couleur = false;
 	}
 
+	public int getType() {
+		return type;
+	}
+
 	public int getCartenb() {
 		return cartenb;
 	}
@@ -40,7 +44,7 @@ public class Carte {
 
 	public String toString()
 	{
-		if (getEtat() == true) {
+		if (getEtat()) {
 		String cartefinal = nbcarte[cartenb] + " de " + cartetype[type];
 		return cartefinal;  
 		}
