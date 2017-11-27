@@ -97,7 +97,7 @@ public class Jeu{
 	}
 
 	public void demandeDeplacement() {
-		System.out.println("Dans quelle colonne se situe la carte à prendre");
+		System.out.println("Dans quelle colonne se situe la carte Ã  prendre");
 		Scanner sc = new Scanner(System.in);
 		int recup = sc.nextInt();
 		Carte carteRecup = p.get(recup-1).get(p.get(recup-1).size()-1);
