@@ -178,7 +178,7 @@ public class Jeu{
 		System.out.println("Carte: "+ cartePioche +" Dans quel tas voulez vous deplacer cette carte, Tapez 0 si vous ne voulez pas cette carte.");
 		Scanner sc = new Scanner(System.in);
 		int choix = sc.nextInt();
-		if (choix > 0) {
+		if (choix > 0 && choix <=7)
 			deplacementPiochee(choix);
 			affichaj();
 			demandeUser();
