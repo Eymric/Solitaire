@@ -223,7 +223,7 @@ public class Jeu{
 		for(int i = 0 ; i <=6; i++) 
 			System.out.println("Colonne "+ (i+1) + ":   " + p.get(i));
 	}
-	
+//	
 	public void initialisationTerrain() {
 		paquet();
 		melangerPaquet();
@@ -233,8 +233,6 @@ public class Jeu{
 		affichaj();
 		pioche();
 		demandeUser();
-
-
 	}
 	
 	public void pioche() {
