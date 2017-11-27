@@ -187,6 +187,13 @@ public class Jeu{
 			pioche.changerCarte();
 			deplacementPioche();
 		}
+		else if (choix == 8)
+			if (verrifPile (cartePioche)) {
+				System.out.println("Ajout automatique de la carte dans la pile de son type");
+				pioche.pioche.remove(0);
+				affichaj();
+				demandeUser();
+			}
 	}
 	
 	public void ajout() {
