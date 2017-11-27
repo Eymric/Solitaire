@@ -71,7 +71,7 @@ public class Jeu{
 	
 	public void deplacementCartes(int s, int recup, int placer) {
 		Carte carteRecup = p.get(recup-1).get(p.get(recup-1).size()-s);
-		Carte cartePlacer = p.get(placer-1).get(p.get(recup-1).size()-1);
+		Carte cartePlacer = p.get(placer-1).get(p.get(placer-1).size()-1);
 		if (!p.get(placer-1).isEmpty()) {
 			if (verrifCarte(cartePlacer, carteRecup)) {
 				int x = s;
@@ -95,7 +95,7 @@ public class Jeu{
 	}
 
 	public void demandeDeplacement() {
-		System.out.println("Dans quelle colonne se situe la carte à prendre");
+		System.out.println("Dans quelle colonne se situe la carte Ã  prendre");
 		Scanner sc = new Scanner(System.in);
 		int recup = sc.nextInt();
 		Carte carteRecup = p.get(recup-1).get(p.get(recup-1).size()-1);
