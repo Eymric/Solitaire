@@ -64,14 +64,17 @@ public class Jeu{
 	}
 	
 	public void retournerCarte(ArrayList<ArrayList<Carte>> n, int col) {
-		Carte carte = n.get(col-1).get(n.get(col-1).size()-1);
-		if (!n.get(col-1).isEmpty() && carte.getEtat() == false)
-			carte.setEtat();
+		if (!n.get(col-1).isEmpty()) {
+			Carte carte = n.get(col-1).get(n.get(col-1).size()-1);
+			if (carte.getEtat() == false) {
+				carte.setEtat();
+			}	
+		}
 	}
 	
 	public void deplacementCartes(int s, int recup, int placer) {
 		Carte carteRecup = p.get(recup-1).get(p.get(recup-1).size()-s);
-		Carte cartePlacer = p.get(placer-1).get(p.get(recup-1).size()-1);
+		Carte cartePlacer = p.get(placer-1).get(p.get(placer-1).size()-1);
 		if (!p.get(placer-1).isEmpty()) {
 			if (verrifCarte(cartePlacer, carteRecup)) {
 				int x = s;
@@ -83,8 +86,7 @@ public class Jeu{
 			}
 			else 
 				System.out.println("Deplacement impossible");
-		}
-		else {
+		} else {
 			int x = s;
 			for (int i=0; i<s ;i++, x--) {
 				p.get(placer-1).add(p.get(recup-1).get(p.get(recup-1).size()-x));
@@ -106,7 +108,7 @@ public class Jeu{
 			affichaj();
 			demandeUser();
 		}
-		if (!p.get(recup-1).get(p.get(recup-1).size()-2).getEtat()) {
+		if (!p.get(recup-1).get(p.get(recup-1).size()-2).getEtat() || p.get(recup-1).get(p.get(recup-1).size()-2) == null ) {
 			System.out.println("Dans quelle colonne voulez vous placer la carte");
 			Scanner sc2 = new Scanner(System.in);
 			int placer = sc2.nextInt();
@@ -159,6 +161,7 @@ public class Jeu{
 		Carte cartePioche = pioche.pioche.get(0);
 		if (!p.get(nb-1).isEmpty()) {
 			Carte derniereCarte = p.get(nb-1).get(p.get(nb-1).size()-1);
+			pioche.pioche.remove(0);
 			
 			if (verrifCarte(derniereCarte , cartePioche)) {
 				p.get(nb-1).add(cartePioche);
@@ -175,10 +178,10 @@ public class Jeu{
 	
 	public void deplacementPioche() {
 		Carte cartePioche = pioche.pioche.get(0);
-		System.out.println("Carte: "+ cartePioche +" Dans quel tas voulez vous deplacer cette carte, Tapez 0 si vous ne voulez pas cette carte.");
+		System.out.println("Carte: "+ cartePioche +" Dans quel tas voulez vous deplacer cette carte, Tapez 0 si vous ne voulez pas cette carte. Tapez 8 pour inserer la carte dans la pile de son type.");
 		Scanner sc = new Scanner(System.in);
 		int choix = sc.nextInt();
-		if (choix > 0) {
+		if (choix > 0 && choix <=7) {
 			deplacementPiochee(choix);
 			affichaj();
 			demandeUser();
@@ -187,6 +190,12 @@ public class Jeu{
 			pioche.changerCarte();
 			deplacementPioche();
 		}
+		else if (choix == 8)
+			if (verrifPile (cartePioche)) {
+				System.out.println("Ajout automatique de la carte dans la pile de son type");
+				affichaj();
+				demandeUser();
+			}
 	}
 	
 	public void ajout() {
