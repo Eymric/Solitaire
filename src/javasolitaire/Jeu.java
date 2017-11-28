@@ -53,19 +53,22 @@ public class Jeu{
 	
 	
 	public void demandeUser() {
-		System.out.println("Quel action desirez vous faire?\n1: Piocher une carte\n2: Deplacer une carte");
-		Scanner sc = new Scanner(System.in);
-		int choix = sc.nextInt();
-		if (choix == 1) 
-			deplacementPioche();
-		if (choix == 2) {
-			demandeDeplacement();	
+		if (finDuJeu())
+			System.out.println("Felicitation, vous avez gagner!!!!!");
+		else {
+			System.out.println("Quel action desirez vous faire?\n1: Piocher une carte\n2: Deplacer une carte");
+			Scanner sc = new Scanner(System.in);
+			int choix = sc.nextInt();
+			if (choix == 1) 
+				deplacementPioche();
+			if (choix == 2) 
+				demandeDeplacement();		
 		}
 	}
 	
-	public void retournerCarte(ArrayList<ArrayList<Carte>> n, int col) {
-		if (!n.get(col-1).isEmpty()) {
-			Carte carte = n.get(col-1).get(n.get(col-1).size()-1);
+	public void retournerCarte(ArrayList<ArrayList<Carte>> p, int recup) {
+		if (!p.get(recup-1).isEmpty()) {
+			Carte carte = p.get(recup-1).get(p.get(recup-1).size()-1);
 			if (carte.getEtat() == false) {
 				carte.setEtat();
 			}	
@@ -74,8 +77,8 @@ public class Jeu{
 	
 	public void deplacementCartes(int s, int recup, int placer) {
 		Carte carteRecup = p.get(recup-1).get(p.get(recup-1).size()-s);
-		Carte cartePlacer = p.get(placer-1).get(p.get(placer-1).size()-1);
 		if (!p.get(placer-1).isEmpty()) {
+			Carte cartePlacer = p.get(placer-1).get(p.get(placer-1).size()-1);
 			if (verrifCarte(cartePlacer, carteRecup)) {
 				int x = s;
 				for (int i=0; i<s ;i++, x--) {
@@ -95,6 +98,14 @@ public class Jeu{
 			retournerCarte(p, recup);
 		}
 	}
+	public void demande1Carte(int recup) {
+		System.out.println("Dans quelle colonne voulez vous placer la carte");
+		Scanner sc2 = new Scanner(System.in);
+		int placer = sc2.nextInt();
+		deplacement(placer, recup);
+		affichaj();
+		demandeUser();
+	}
 
 	public void demandeDeplacement() {
 		System.out.println("Dans quelle colonne se situe la carte à prendre");
@@ -108,14 +119,14 @@ public class Jeu{
 			affichaj();
 			demandeUser();
 		}
-		if (!p.get(recup-1).get(p.get(recup-1).size()-2).getEtat() || p.get(recup-1).get(p.get(recup-1).size()-2) == null ) {
-			System.out.println("Dans quelle colonne voulez vous placer la carte");
-			Scanner sc2 = new Scanner(System.in);
-			int placer = sc2.nextInt();
-			deplacement(placer, recup);
-			affichaj();
-			demandeUser();
-		}
+		 if (carteRecup == p.get(recup-1).get(0) ) 
+			 
+			demande1Carte(recup);
+		 
+		else if (!p.get(recup-1).get(p.get(recup-1).size()-2).getEtat()) 
+			
+			demande1Carte(recup);
+			
 		else {
 		System.out.println("En partant de la droite, combien de cartes souhaitez vous selectionner?");
 		Scanner sc1 = new Scanner(System.in);
@@ -141,9 +152,9 @@ public class Jeu{
 
 		
 		public void deplacement(int placer, int recup) {
-			Carte cartePlacer = p.get(placer-1).get(p.get(placer-1).size()-1);
 			Carte carteRecup = p.get(recup-1).get(p.get(recup-1).size()-1);
 			if (!p.get(placer-1).isEmpty()) {
+				Carte cartePlacer = p.get(placer-1).get(p.get(placer-1).size()-1);
 				if (verrifCarte( cartePlacer, carteRecup)) {
 					p.get(placer-1).add(carteRecup);
 					p.get(recup-1).remove(p.get(recup-1).size()-1);
@@ -152,8 +163,11 @@ public class Jeu{
 				else 
 					System.out.println("Deplacement impossible");
 			}
-			else
+			else {
 				p.get(placer-1).add(carteRecup);
+				p.get(recup-1).remove(p.get(recup-1).size()-1);
+				retournerCarte(p,recup);
+			}
 		}
 		
 	
@@ -161,8 +175,6 @@ public class Jeu{
 		Carte cartePioche = pioche.pioche.get(0);
 		if (!p.get(nb-1).isEmpty()) {
 			Carte derniereCarte = p.get(nb-1).get(p.get(nb-1).size()-1);
-			pioche.pioche.remove(0);
-			
 			if (verrifCarte(derniereCarte , cartePioche)) {
 				p.get(nb-1).add(cartePioche);
 				pioche.pioche.remove(0);
@@ -170,8 +182,10 @@ public class Jeu{
 			else 
 				System.out.println("Deplacement impossible");
 		}
-		else 
+		else {
 			p.get(nb-1).add(cartePioche);
+			pioche.pioche.remove(0);
+		}
 	}
 		
 		
@@ -252,5 +266,13 @@ public class Jeu{
 	
 	public int getCartenb() {
 		return a.getCartenb();
+	}
+	
+	public boolean finDuJeu() {
+		for (int i = 0; i<4;i++) {
+			if (t.get(i).size() == 13)
+				return true;
+		}
+		return false;
 	}
 }
