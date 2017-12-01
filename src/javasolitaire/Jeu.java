@@ -50,20 +50,33 @@ public class Jeu{
 		return false;
 	}
 
-	
+	public boolean finDuJeu() {
+		for (int i=0, x=0; i<7; i++) {
+			if (p.get(i).isEmpty()) 
+				x++;
+		if (x == 6) 
+			System.out.println("Felicitation, vous avez gagné");
+		return true;
+		}
+		return false;
+	}
 	
 	public void demandeUser() {
 		if (finDuJeu())
-			System.out.println("Felicitation, vous avez gagner!!!!!");
-		else {
 			System.out.println("Quel action desirez vous faire?\n1: Piocher une carte\n2: Deplacer une carte");
 			Scanner sc = new Scanner(System.in);
 			int choix = sc.nextInt();
-			if (choix == 1) 
-				deplacementPioche();
+			if (choix == 1) {
+				if (pioche.pioche.isEmpty()) {
+					System.out.println("Pioche vide");
+				demandeUser();
+				}
+				else
+					deplacementPioche();
+			}
+				
 			if (choix == 2) 
 				demandeDeplacement();		
-		}
 	}
 	
 	public void retournerCarte(ArrayList<ArrayList<Carte>> p, int recup) {
@@ -268,11 +281,4 @@ public class Jeu{
 		return a.getCartenb();
 	}
 	
-	public boolean finDuJeu() {
-		for (int i = 0; i<4;i++) {
-			if (t.get(i).size() == 13)
-				return true;
-		}
-		return false;
-	}
 }
